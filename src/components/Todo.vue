@@ -8,7 +8,7 @@
         {{ todo.project }}
       </div>
       <div class='extra content'>
-        <span class='right floated edit icon'>
+        <span class='right floated edit icon' v-on:click="showForm()">
           <i class='edit icon'></i>
         </span>
         <span class='right floated trash icon' v-on:click="deleteTodo(todo)">
@@ -27,7 +27,7 @@
           <input type='text' v-model="todo.project">
         </div>
         <div class='ui two button attached buttons'>
-          <button class='ui basic blue button' v-on:click="hideForm">
+          <button class='ui basic blue button' v-on:click="hideForm(todo)">
             关闭 X
           </button>
         </div>
@@ -37,7 +37,7 @@
     <div class='ui bottom attached green basic button' v-show="!isEditing && todo.done" disabled>
       已完成
     </div>
-    <div class='ui bottom attached red basic button' v-show="!isEditing && !todo.done">
+    <div class='ui bottom attached red basic button' v-show="!isEditing && !todo.done" v-on:click="completeTodo(todo)">
       完成
     </div>
   </div>
@@ -55,8 +55,9 @@
       showForm() {
         this.isEditing = true
       },
-      hideForm() {
+      hideForm(todo) {
         this.isEditing = false
+        this.$emit('edit-todo', todo)
       },
       deleteTodo(todo) {
         this.$emit('delete-todo', todo)

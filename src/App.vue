@@ -18,6 +18,10 @@ export default {
     TodoList
   },
   data() {
+    if (!localStorage.getItem('todos')) {
+      localStorage.setItem('todos', JSON.stringify({todos: []}))
+    }
+    /*
     return {
       todos: [{
         title: 'Todo A',
@@ -37,15 +41,18 @@ export default {
         done: false,
       }]
     }
+    */
+    return JSON.parse(localStorage.getItem('todos'))
   },
   methods: {
     addTodo(todo) {
-      swal('fuck')
-      this.todos.push({
+      swal('创建成功')
+      this.todos.unshift({
         title: todo.title,
         project: todo.project,
         done: false,
       })
+      localStorage.setItem('todos', JSON.stringify({todos: this.todos}))
     },
   },
 }
