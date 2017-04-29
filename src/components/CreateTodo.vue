@@ -48,8 +48,10 @@ export default {
       if (this.titleText.length > 0 && this.projectText.length > 0) {
         const title = this.titleText
         const project = this.projectText
+        const date = new Date()
         this.$emit('add-todo', {
           title,
+          date,
           project,
           done: false,
         })

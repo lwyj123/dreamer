@@ -5,15 +5,18 @@
         {{ todo.title }}
       </div>
       <div class='meta'>
+        {{ startDate }}
+      </div>
+      <div class='meta'>
         {{ todo.project }}
       </div>
       <div class='extra content'>
-        <span class='right floated edit icon' v-on:click="showForm()">
+        <a class='ui right floated edit icon' v-on:click="showForm()">
           <i class='edit icon'></i>
-        </span>
-        <span class='right floated trash icon' v-on:click="deleteTodo(todo)">
+        </a>
+        <a class='ui right floated trash icon' v-on:click="deleteTodo(todo)">
           <i class='trash icon'></i>
-        </span>
+        </a>
       </div>        
     </div>
     <div class='content' v-show="isEditing">
@@ -50,6 +53,23 @@
       return {
         isEditing: false,
       }
+    },
+    computed: {
+      startDate: function() {
+        let formatDateTime = function(date) {
+          let y = date.getFullYear()
+          let m = date.getMonth() + 1
+          m = m < 10 ? ('0' + m) : m
+          let d = date.getDate()
+          d = d < 10 ? ('0' + d) : d
+          let h = date.getHours()
+          let minute = date.getMinutes()
+          minute = minute < 10 ? ('0' + minute) : minute
+          return y + '-' + m + '-' + d + ' ' + h + ':' + minute
+        }
+        return formatDateTime(this.todo.date)
+      },
+
     },
     methods: {
       showForm() {

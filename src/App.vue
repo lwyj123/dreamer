@@ -49,6 +49,7 @@ export default {
       swal('创建成功')
       this.todos.unshift({
         title: todo.title,
+        date: todo.date,
         project: todo.project,
         done: false,
       })
