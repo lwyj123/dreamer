@@ -43,96 +43,20 @@
         }
       };
       return {
-        activeName: 'index-myplanet',
-        loading: false,
-
-        // form part
-        loginForm: {
-          email: '',
-          password: '',
-        },
-        loginRules: {
-          email: [
-            { validator: validateUser, trigger: 'blur' }
-          ],
-          password: [
-            { validator: validatePass, trigger: 'blur' }
-          ],
-        }
+        
       }
     },
     computed: {
-      ...mapGetters([
-        'user',
-      ])
+      
     },
     mounted() {
     },
     methods: {
-      submitForm(formName) {
-        this.$refs[formName].validate((valid) => {
-          if (valid) {
-            this.loading = true;
-            this.$store.dispatch('Login', this.loginForm).then(() => {
-              this.loading = false;
-              this.$router.push({ path: '/' });
-                // this.showDialog = true;
-            }).catch(err => {
-              console.dir(err)
-              this.$message({
-                message: err.error,
-                type: 'error',
-                duration: 1000,
-              });
-              this.loading = false;
-            });
-          } else {
-            console.log('error submit!!');
-            return false;
-          }
-        });
-      },
+      
     },
   }
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-  .login-container {
-    display: flex;
-    justify-content: space-between;
-    margin: auto;
-    max-width: 660px;
-    min-width: 380px;
-    section {
-      flex: 1;
-      header {
-        margin: 15px 0 20px 0;
-
-        font-family:PingFangHK-Medium;
-        font-size:18px;
-        color:#5677fc;
-      }
-      div.form-content {
-        width: 100%;
-        background:#ffffff;
-        border-radius:4px;
-        width:660px;
-        height:500px;
-        padding-top:40px;
-        #register{
-          font-family:PingFangHK-Medium;
-          font-size:14px;
-          color:#5677fc;
-          margin-left:144px;
-        }
-        #findpassword{
-          font-family:PingFangHK-Medium;
-          font-size:14px;
-          color:#5677fc;
-          margin-left:260px;
-        }
-      }
-    }
-
-  }
+  
 </style>

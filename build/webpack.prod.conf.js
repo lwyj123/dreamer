@@ -8,6 +8,7 @@ var CopyWebpackPlugin = require('copy-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
+var workboxPlugin = require('workbox-webpack-plugin');
 
 var env = process.env.NODE_ENV === 'production' ? config.build.prodEnv : config.build.sitEnv
 
@@ -108,6 +109,12 @@ var webpackConfig = merge(baseWebpackConfig, {
                 ignore: ['.*']
             }
         ]),
+        // workbox for service worker
+        new workboxPlugin({
+            globDirectory: 'dist',
+            globPatterns: ['**/*.{html,js,css}'],
+            swDest: path.join('dist', 'sw.js'),
+        }),
     ]
 })
 if (config.build.bundleAnalyzerReport) {

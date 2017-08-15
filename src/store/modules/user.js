@@ -1,5 +1,4 @@
 import { login } from 'api/login';
-import Cookies from 'js-cookie';
 import { storeWithExpiration } from 'utils';
 
 const user = {
