@@ -6,7 +6,7 @@
     <div class="main-container">
       <app-main></app-main>
     </div>
-    <div>
+    <div class="footer-container">
       <app-footer></app-footer>
     </div>
   </div>
@@ -34,14 +34,20 @@
     position: relative;
     height: 100%;
     width: 100%;
+    max-width: 960px;
+    margin: auto;
     .navbar-wrapper {
       height: 50px;
+      margin-bottom: 20px;
     }
     .main-container {
       background-color: #f8f9fa;
-      height: calc(100vh - 50px);
+      height: calc(100vh - 70px);
       overflow: auto;
       transition: all .28s ease-out;
+    }
+    .footer-container {
+      margin-top: 20px;
     }
   }
 </style>
