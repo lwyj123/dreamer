@@ -2,48 +2,41 @@
     <div class="login-container">
       <section>     
         <header>登录</header>
-        <div class="form-content">
-          <el-form :model="loginForm" :rules="loginRules" ref="loginForm" label-width="100px" class="demo-ruleForm">
-            <el-form-item label="邮箱" prop="email" class="form-inputy">
-              <el-input v-model.number="loginForm.email" placeholder="输入邮箱"></el-input>
-            </el-form-item>
-            <el-form-item label="密码" prop="password" class="form-inputy">
-              <el-input type="password" v-model="loginForm.password" auto-complete="off" placeholder="输入密码"></el-input>
-            </el-form-item>
-            <el-form-item label-width="100px" class="form-btny">
-              <el-button type="primary" @click="submitForm('loginForm')">登录</el-button>
-            </el-form-item>
-          </el-form>
-          <a href="#/login" id="register">注册账号</a>
-          <a href="#/login" id="findpassword">找回密码</a>
-        </div>
+        <create-todo v-on:add-todo="addTodo"></create-todo>
+        <todo-list v-bind:todos="todos"></todo-list>
       </section>
     </div>
 </template>
 
 <script>
   import { mapGetters } from 'vuex';
-
+  import TodoList from 'components/TodoList'
+  import CreateTodo from 'components/TodoList/CreateTodo'
   export default {
-    name: 'index-visitor',
+    name: 'index',
+    components: {
+      CreateTodo,
+      TodoList
+    },
     data() {
-      // element-ui validator
-      var validateUser = (rule, value, callback) => {
-        if (value === '') {
-          callback(new Error('请再次输入Username'));
-        } else {
-          callback();
-        }
-      };
-      var validatePass = (rule, value, callback) => {
-        if (value === '') {
-          callback(new Error('请输入密码'));
-        } else {
-          callback();
-        }
-      };
       return {
-        
+        todos: [{
+          title: 'Todo A',
+          project: 'Project A',
+          done: false,
+        }, {
+          title: 'Todo B',
+          project: 'Project B',
+          done: true,
+        }, {
+          title: 'Todo C',
+          project: 'Project C',
+          done: false,
+        }, {
+          title: 'Todo D',
+          project: 'Project D',
+          done: false,
+        }]
       }
     },
     computed: {
@@ -52,7 +45,15 @@
     mounted() {
     },
     methods: {
-      
+      addTodo(todo) {
+        this.todos.unshift({
+          title: todo.title,
+          date: todo.date,
+          project: todo.project,
+          done: false,
+        })
+        localStorage.setItem('todos', JSON.stringify({todos: this.todos}))
+      },
     },
   }
 </script>
