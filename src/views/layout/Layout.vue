@@ -6,17 +6,21 @@
     <div class="main-container">
       <app-main></app-main>
     </div>
+    <div>
+      <app-footer></app-footer>
+    </div>
   </div>
 </template>
 
 <script>
-  import { Navbar, AppMain } from 'views/layout';
+  import { Navbar, AppMain, AppFooter } from 'views/layout';
 
   export default {
     name: 'layout',
     components: {
       Navbar,
-      AppMain
+      AppMain,
+      AppFooter,
     },
     computed: {
     }
