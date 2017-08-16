@@ -1,25 +1,31 @@
 <template>
-  <div class='ui centered card'>
-    <div class='content' v-show="!isEditing">
-      <div class='header'>
+  <div class='todo-card'>
+    <div class='normal-line' v-show="!isEditing">
+      <h2 class='title'>
         {{ todo.title }}
-      </div>
-      <div class='meta'>
-        {{ startDate }}
-      </div>
-      <div class='meta'>
+      </h2>
+      <p class='meta'>
+        {{ todo.created_at }}
+      </p>
+      <p class='meta'>
         {{ todo.project }}
-      </div>
-      <div class='extra content'>
+      </p>
+      <div class='func'>
         <a class='ui right floated edit icon' v-on:click="showForm()">
-          <i class='edit icon'></i>
+          <i class='edit icon'>edit</i>
         </a>
         <a class='ui right floated trash icon' v-on:click="deleteTodo(todo)">
-          <i class='trash icon'></i>
+          <i class='trash icon'>trash</i>
         </a>
-      </div>        
+      </div> 
+      <button class='todo-button' v-show="!isEditing && todo.done" disabled>
+        已完成
+      </button>
+      <button class='todo-button' v-show="!isEditing && !todo.done" v-on:click="completeTodo(todo)">
+        完成
+      </button>       
     </div>
-    <div class='content' v-show="isEditing">
+    <div class='edit-line' v-show="isEditing">
       <div class='ui form'>
         <div class='field'>
           <label>Title</label>
@@ -36,13 +42,6 @@
         </div>
       </div>      
     </div>
-
-    <div class='ui bottom attached green basic button' v-show="!isEditing && todo.done" disabled>
-      已完成
-    </div>
-    <div class='ui bottom attached red basic button' v-show="!isEditing && !todo.done" v-on:click="completeTodo(todo)">
-      完成
-    </div>
   </div>
 </template>
 
@@ -55,20 +54,6 @@
       }
     },
     computed: {
-      startDate: function() {
-        let formatDateTime = function(date) {
-          let y = date.getFullYear()
-          let m = date.getMonth() + 1
-          m = m < 10 ? ('0' + m) : m
-          let d = date.getDate()
-          d = d < 10 ? ('0' + d) : d
-          let h = date.getHours()
-          let minute = date.getMinutes()
-          minute = minute < 10 ? ('0' + minute) : minute
-          return y + '-' + m + '-' + d + ' ' + h + ':' + minute
-        }
-        return formatDateTime(this.todo.date)
-      },
 
     },
     methods: {
@@ -88,3 +73,56 @@
     }
   }
 </script>
+
+<style rel="stylesheet/scss" lang="scss" scoped>
+  .todo-card {
+    width: 100%;
+  }
+  .normal-line {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    line-height: 50px;
+    border-bottom: 1px solid #d3d3d3;
+    &:hover {
+      background: #eeeeee;
+    }
+    h2.title {
+      font-size: 14px;
+      margin-right: 10px;
+    }
+    p.meta {
+      font-size: 14px;
+      color: #999;
+    }
+    div.func {
+      margin-left: auto;
+      a {
+        margin: 0 10px;
+      }
+    }
+    button.todo-button {
+      width: 100px;
+      background: #1b87f6;
+      height: 40px;
+      line-height: 40px;
+      border-radius:4px;
+      border: none;
+
+      font-size:12px;
+      color:#ffffff;
+      text-align:center;
+      &:focus {
+        outline: none;
+      }
+    }
+    button[disabled] {
+      @extend button.todo-button;
+      background: #e3e3e3;
+      color: #aaaaaa;
+    }
+  }
+  .edit-line {
+    
+  }
+</style>
