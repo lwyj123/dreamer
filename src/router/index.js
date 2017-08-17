@@ -7,7 +7,7 @@ const _import = require('./_import_' + process.env.NODE_ENV);
 import Layout from '../views/layout/Layout';
 
 /* login */
-const Login = _import('login/index');
+const Index = _import('index/index');
 /*const authRedirect = _import('login/authredirect');*/
 
 
@@ -32,11 +32,11 @@ export const constantRouterMap = [
   { path: '/404', component: Err404, hidden: true },
   { path: '/401', component: Err401, hidden: true },
   { 
-    path: '/login',
-    name: 'login',
+    path: '/',
+    name: 'index',
     component: Layout,
     hidden: true,
-    children: [{ path: '', component: Login }]
+    children: [{ path: '', component: Index }]
   },
 ]
 
