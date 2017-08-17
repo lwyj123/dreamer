@@ -1,4 +1,4 @@
-import { login } from 'api/login';
+import { sigin } from 'api/auth';
 import { storeWithExpiration } from 'utils';
 
 const user = {

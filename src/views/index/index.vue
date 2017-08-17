@@ -12,6 +12,7 @@
   import { mapGetters } from 'vuex';
   import TodoList from 'components/TodoList'
   import CreateTodo from 'components/TodoList/CreateTodo'
+  import { getTasks } from 'api/task'
   export default {
     name: 'index',
     components: {
@@ -30,6 +31,9 @@
       
     },
     mounted() {
+      getTasks().then(res => {
+        console.log(res)
+      })
     },
     methods: {
       addTodo(todo) {
