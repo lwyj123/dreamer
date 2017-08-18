@@ -1,11 +1,11 @@
 <template>
-    <div class="login-container">
-      <section>     
-        <header>登录</header>
-        <create-todo v-on:add-todo="addTodo"></create-todo>
-        <todo-list v-bind:todos="todos"></todo-list>
-      </section>
-    </div>
+  <div class="login-container">
+    <section>     
+      <header>登录</header>
+      <create-todo v-on:add-todo="addTodo"></create-todo>
+      <todo-list v-bind:todos="todos"></todo-list>
+    </section>
+  </div>
 </template>
 
 <script>

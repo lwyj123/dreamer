@@ -1,13 +1,17 @@
 import fetch from 'utils/fetch';
 
-export function signin(params) {
-  const data = {
-    name: params.name,
-    password: params.password,
-  };
+export function signin(formObj) {
   return fetch({
     url: '/signin',
     method: 'post',
-    data: data,
+    data: formObj,
+  });
+}
+
+export function signup(formObj) {
+  return fetch({
+    url: '/users',
+    method: 'post',
+    data: formObj,
   });
 }

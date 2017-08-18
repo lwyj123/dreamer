@@ -1,14 +1,24 @@
 <template>
   <div class="form">  
     <ul class="tab-group">
-      <li class="tab"><router-link :to="{name: 'signup'}">Sign Up</router-link></li>
-      <li class="tab active"><router-link :to="{name: 'login'}">Log In</router-link></li>
+      <li class="tab active"><router-link :to="{name: 'signup'}">Sign Up</router-link></li>
+      <li class="tab"><router-link :to="{name: 'login'}">Log In</router-link></li>
     </ul>
     
     <div class="tab-content">
       <div id="signup">   
-        <h1>Welcome back!</h1>
+        <h1>Sign Up for Free</h1>
+        
         <form>
+        <div class="field-wrap">
+          <label v-if="form.name === ''">
+            Name<span class="req">*</span>
+          </label>
+          <input type="text" required="" 
+                 v-model="form.name" 
+                 autocomplete="off" 
+                 spellcheck="false">
+        </div>
         <div class="field-wrap">
           <label v-if="form.email === ''">
             Email Address<span class="req">*</span>
@@ -21,7 +31,7 @@
         
         <div class="field-wrap">
           <label v-if="form.password === ''">
-            Password<span class="req">*</span>
+            Set A Password<span class="req">*</span>
           </label>
           <input type="password" required="" 
                  v-model="form.password" 
@@ -29,7 +39,7 @@
                  spellcheck="false">
         </div>
         
-        <button type="button" @click="clickLogin" class="button button-block">Login</button>
+        <button type="button" @click="clickSignup" class="button button-block">Get Started</button>
         </form>
       </div>
       
@@ -46,6 +56,7 @@
     data() {
       return {
         form: {
+          name: '',
           email: '',
           password: '',
         },
@@ -59,16 +70,16 @@
     },
     methods: {
       ...mapActions([
-        'Login'
+        'Signup'
       ]),
-      clickLogin() {
+      clickSignup() {
         var self = this;
-        if(this.form.email === '' || this.form.password.length < 6) {
+        if(this.form.name === '' || this.form.email === '' || this.form.password.length < 6) {
           return
         }
-        this.Login(this.form).then(res => {
+        this.Signup(this.form).then(res => {
           self.$message({
-            message: 'login success,',
+            message: 'signup success,',
             type: 'success'
           });
           setTimeout(() => {

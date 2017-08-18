@@ -8,6 +8,8 @@ import Layout from '../views/layout/Layout';
 
 /* login */
 const Index = _import('index/index');
+const Signup = _import('signup/index');
+const Login = _import('login/index');
 /*const authRedirect = _import('login/authredirect');*/
 
 
@@ -35,8 +37,17 @@ export const constantRouterMap = [
     path: '/',
     name: 'index',
     component: Layout,
-    hidden: true,
     children: [{ path: '', component: Index }]
+  },
+  { 
+    path: '/signup',
+    name: 'signup',
+    component: Signup,
+  },
+  { 
+    path: '/login',
+    name: 'login',
+    component: Login,
   },
 ]
 

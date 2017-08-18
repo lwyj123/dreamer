@@ -30,7 +30,8 @@ Object.keys(filters).forEach(key => {
 const blackList = [];// 重定向黑名单
 router.beforeEach((to, from, next) => {
   NProgress.start(); // 开启Progress
-  if (store.getters.token != '') { // 判断是否有token
+  console.dir(store.getters)
+  if (store.getters.user.name) { // 判断是否有token
     if (to.path === '/login') {
       next({ path: '/' });
     } else {
