@@ -213,7 +213,7 @@
     color:#8a97a0;
     -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
     box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
-    margin-bottom: 30px;
+    margin-bottom: 5px;
     
 }
 .form-style-5 input[type="text"]:focus,
@@ -251,7 +251,7 @@
 {
     position: relative;
     display: block;
-    padding: 19px 39px 18px 39px;
+    padding: 4px 10px 4px 10px;
     color: #FFF;
     margin: 0 auto;
     background: #1abc9c;

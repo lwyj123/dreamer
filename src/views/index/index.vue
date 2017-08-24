@@ -1,7 +1,7 @@
 <template>
   <div class="login-container">
     <section>     
-      <header>登录</header>
+      <header>List</header>
       <create-todo v-on:add-todo="addTodo"></create-todo>
       <todo-list v-bind:todos="todos"></todo-list>
     </section>
@@ -12,7 +12,7 @@
   import { mapGetters } from 'vuex';
   import TodoList from 'components/TodoList'
   import CreateTodo from 'components/TodoList/CreateTodo'
-  import { getTasks } from 'api/task'
+  import { getTasks, postTask } from 'api/task'
   export default {
     name: 'index',
     components: {
@@ -32,6 +32,7 @@
     },
     mounted() {
       getTasks().then(res => {
+        console.log('get tasks')
         console.log(res)
       })
     },
@@ -44,6 +45,13 @@
           done: false,
         })
         localStorage.setItem('todos', JSON.stringify({todos: this.todos}))
+        postTask({
+          name: todo.title,
+          describe: todo.desc,
+        }).then(res => {
+          console.log('post success');
+          console.log(res);
+        })
       },
     },
   }

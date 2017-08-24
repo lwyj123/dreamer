@@ -13,7 +13,7 @@
         </span>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item>history</el-dropdown-item>
-          <el-dropdown-item>logout</el-dropdown-item>
+          <el-dropdown-item @click.native="logout">logout</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </nav>
@@ -38,6 +38,7 @@
     },
     methods: {
       logout() {
+        console.log('keke')
         this.$store.dispatch('Logout').then(() => {
           location.reload();// 为了重新实例化vue-router对象 避免bug
         });
